@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	<select id="checkId" parameterType="string" resultType="_int">
+		select userStatus from tbl_user where userId = #{userId}
+	</select>
+	
+	<insert id="insert" parameterType="vo.UserVO">
+		insert into tbl_user (userId, userPassword, userName, userAge, userPhoneNumber, userBirth) " + "values(#{userId}, #{userPassword}, #{userName}, #{userAge}, #{userPhoneNumber}, #{userBirth})
+	</insert>
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Animal">
+	<select id="findAllOrderBy" parameterType="string" resultType="animalVO">
+		select animal_number, animal_name, animal_life, animal_species, animal_explain from tbl_animal
+		order by 
+		<choose>
+			<when test="type == 'default'.toString()">
+				animal_number 
+			</when>
+			<when test="type == 'n'.toString()">
+				animal_name 
+			</when>
+			<when test="type == 's'.toString()">
+				animal_species
+			</when>
+			<when test="type == 'l'.toString()">
+				animal_life
+			</when>
+		</choose>
+		desc
+	</select>
+	
+	<select id="findAllSearchBy" parameterType="searchDTO" resultType="animalVO">
+		select animal_number, animal_name, animal_life, animal_species, animal_explain from tbl_animal
+		where 
+		<trim  prefixOverrides="OR">
+			<foreach item="type" collection="types">
+				<trim  prefix="OR">
+					<choose>
+						<when test="type == 'n'.toString()">
+							animal_name = #{keyword}
+						</when>
+						<when test="type =='s'.toString()">
+							animal_species = #{keyword}
+						</when>
+						<otherwise>
+							animal_life = #{keyword}
+						</otherwise>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</select>
+	
+	<select id="findAll" parameterType="criteria" resultType="animalVO">
+		select animal_number, animal_name, animal_life, animal_species, animal_explain from tbl_animal
+		<where>
+			<if test="type != 'none'.toString() and keyword != 'none'.toString()">
+				<trim  prefixOverrides="OR">
+					<foreach item="type" collection="types">
+						<trim  prefix="OR">
+							<choose>
+								<when test="type == 'n'.toString()">
+									animal_name = #{keyword}
+								</when>
+								<when test="type =='s'.toString()">
+									animal_species = #{keyword}
+								</when>
+								<when test="type =='l'.toString()">
+									animal_life = #{keyword}
+								</when>
+							</choose>
+						</trim>
+					</foreach>
+				</trim>
+			</if>
+		</where>
+		<if test="order != 'none'.toString()">
+				order by 
+				<choose>
+					<when test="order == 'default'.toString()">
+						animal_number 
+					</when>
+					<when test="order == 'n'.toString()">
+						animal_name 
+					</when>
+					<when test="order == 's'.toString()">
+						animal_species
+					</when>
+					<when test="order == 'l'.toString()">
+						animal_life
+					</when>
+				</choose>
+				desc
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

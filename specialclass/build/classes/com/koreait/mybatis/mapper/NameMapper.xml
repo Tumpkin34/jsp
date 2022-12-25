@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Name">
+
+	<insert id="insert" parameterType="nameVO"> <!--알리아스 설정해서 이렇게 nameVO쓸수있다 -->
+		insert into tbl_name (name)
+		values(#{name}) <!-- VO에서 getName을 불러온다 이제 다오로 
+			간다 실행하기 위해서 -->
+	</insert>
+
+	<select id="select" resultType="nameVO">
+		select name from tbl_name
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

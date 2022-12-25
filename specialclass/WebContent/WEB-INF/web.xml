@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>specialclass</display-name>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet> <!-- 여기서 자바 파일로 찾아준다 디비는 자바에서 연동이 되니까 -->
+		<servlet-name>special</servlet-name>
+		<servlet-class>com.special.app.InputDB</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>special</servlet-name>
+		<url-pattern>*.sp</url-pattern>
+	</servlet-mapping>
+
+</web-app>
