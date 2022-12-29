@@ -84,12 +84,13 @@ response.sendRedirect() : 페이지 이동하는 메소드
 
 노드 : 단일 페이지 요청을 단일로 응답은 멀티로 
 
-비동기 통신 Ashynchrom 
+# 동기와 비동기방식
 
 동기는 페이지를 요청
 
 비동기는 데이터를 요청
 
+![Asynchronous](./day02동기_비동기.png)
 
 # Ajax(Asynchronous Javascript and XML)
 	빠르게 동작하는 동적인 웹 페이지를 만들기 위한 개발 기법이다.
