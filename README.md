@@ -123,4 +123,52 @@ response.sendRedirect() : 페이지 이동하는 메소드
 어플리케이션에서 필요할 때 갖다 쓰는게 라이브러리
 이미 전부 구성이된 환경에서 작업하는게 프레임 워크
 
+# EL문과 JSTL : 페이지 가독성 상승
+	자바 구문을 라이브러리 형태로 만들어 놓고 필요할 때 마다 태그로 꺼내쓰는 기술이다.
+	JSP페이지 내에서 자바코드와 HTML코드가 섞여 있으면 가독성이 떨어지고 복잡해진다.
+	EL문과 JSPL문을 사용하면 HTML태그로만 구성된 일관된 소스코드를 볼 수 있다는 장점이 있다.
 
+# EL(Expression Language)
+	값을 간결하고 간편하게 출력할 수 있도록 해주는 기술
+
+	자바					EL(jar파일 필요 lib에만 추가해도됨)
+	<%=name%>				${name}
+	<%=member.getName()%>		${member.getName()}
+
+	값을 찾을 때에는 작은 Scope에서 큰 Scope로 찾는다.
+	page > request > session > application
+
+	원하는 Scope의 변수를 찾을 때 아래와 같이 사용한다.
+	${param.name} : 전달받은 데이터 중 쿼리스트링으로 작성된 데이터에서 name을 찾는다.(쿼리스트링으로 작성된 것만 저장된다.
+	${requestScope.name} : request객체에 담긴 데이터 중 name을 찾는다.(get,post로 작성된 것은 form의 input,ajax
+	${sessionScope.name} : session 객체에 담긴 데이터중 name을 찾는다.
+
+# EL 연산자
+	%, mod
+	&&, and
+	||, or
+	>, it
+	<, gt
+	>=, le
+	<=, ge
+	==,eq
+	!=, ne
+	empty : 값이 비어있으면 true, 값이 있으면 false(not empty)
+	!, not
+
+# JSPL(Jsp Standard Tag Library)
+	연산자나 조건문, 반복문 등을 편하게 처리할 수 있으며, JSP페이지 내에서 자바 코드를 사용하지 않고
+	로직을 구현할 수 있도록 효율적인 방법을 제공한다.
+
+	자바						JSTL(c = 코어라는 대카테고리 안에있다(메소드는 fn)
+	<%for(자료형 변수명 : 반복자){}%>	<c:forEach var="" items ="${반복자}"></c:forEach>
+	<%for(초기식;조건식;증감식){}%>	<c:forEach var = "" begin = "1" end= "10"></c:forEach>
+
+# core 태그의 종류 <c:></c:>
+	<c:set> : 변수 선언
+	<c:out> : 변수 출력(사용)
+	<c:if> : if문
+	<c:choose> : switch문 (else if문)
+	<c:when> : case문
+	<c:otherwise> : default(else 문)
+	<c:forEach> : for문
